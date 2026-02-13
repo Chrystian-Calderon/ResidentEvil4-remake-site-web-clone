@@ -1,0 +1,24 @@
+{
+  "es": {
+    "top": "INICIO",
+    "topics": "TEMAS",
+    "trailer": "TRÁILER",
+    "about": "MÁS INFORMACIÓN",
+    "character": "PROTAGONISTA",
+    "location": "UBICACIÓN",
+    "gameplay": "EL JUEGO",
+    "dlc": "DLC",
+    "buy": "COMPRAR"
+  },
+  "en-us": {
+    "top": "TOP",
+    "topics": "TOPICS",
+    "trailer": "TRAILER",
+    "about": "ABOUT",
+    "character": "CHARACTER",
+    "location": "LOCATION",
+    "gameplay": "GAMEPLAY",
+    "dlc": "DLC",
+    "buy": "BUY"
+  }
+}
