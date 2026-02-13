@@ -22,9 +22,30 @@ const header =
   ] || headerLangs["en-us"];
 ---
 
-<header class="flex justify-end relative z-10 p-4">
+<header
+  class="flex justify-end absolute top-0 right-0 sm:left-0 z-10 sm:p-4 sm:h-auto h-screen w-screen sm:w-auto"
+>
+  <!-- hamburger -->
+  <div
+    id="hamburger"
+    class="flex sm:hidden absolute top-0 right-0 w-10 h-10 flex-col justify-between items-center m-4 text-white font-[Teko] cursor-pointer z-10"
+  >
+    <div class="h-0.5 w-full bg-white"></div>
+    <div class="h-0.5 w-full bg-white"></div>
+    <span class="btn-text">MENU</span>
+  </div>
+
+  <!-- panel blur -->
+  <div
+    class="p-blur sm:hidden w-screen h-screen absolute top-0 left-0 -z-1 transparent backdrop-blur-sm"
+  >
+  </div>
+
   <!-- nav -->
-  <ul class="flex text-white">
+  <!-- Nav horizontal (desktop) -->
+  <ul
+    class="nav-desktop hidden sm:flex flex-row justify-center gap-0 text-white text-[16px] p-0"
+  >
     <li class="after:content-['-'] after:mr-1">
       <a
         href={`/${currentLocale}/#top`}
@@ -72,20 +93,101 @@ const header =
     </li>
     <li>
       <div
-        class="btn-buy relative bg-red px-4 cursor-pointer transition-colors hover:bg-red/80"
+        class="btn-buy relative bg-red cursor-pointer transition-colors hover:bg-red/80"
         style={`--pattern-url: url('/images/ui/site_pattern.png')`}
       >
-        <a href={`/${currentLocale}/#buy`} class="font-[Teko] relative">
-          {header.buy}
-        </a>
+        <a
+          href={`/${currentLocale}/#buy`}
+          class="font-[Teko] relative text-center px-4 w-full block sm:text-left"
+          >{header.buy}</a
+        >
       </div>
     </li>
   </ul>
 
-  <!-- nav mobile -->
+  <!-- Nav vertical (mobile) -->
+  <ul
+    class="nav-mobile flex sm:hidden flex-col justify-center gap-4 text-white text-2xl px-8 bg-black/70"
+  >
+    <li>
+      <a
+        href={`/${currentLocale}/#top`}
+        class="hover:text-red font-[Teko] transition-colors">{header.top}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#topics`}
+        class="hover:text-red font-[Teko] transition-colors">{header.topics}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#trailer`}
+        class="hover:text-red font-[Teko] transition-colors">{header.trailer}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#about`}
+        class="hover:text-red font-[Teko] transition-colors">{header.about}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#character`}
+        class="hover:text-red font-[Teko] transition-colors"
+        >{header.character}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#location`}
+        class="hover:text-red font-[Teko] transition-colors"
+        >{header.location}</a
+      >
+    </li>
+    <li>
+      <a
+        href={`/${currentLocale}/#gameplay`}
+        class="mr-2 hover:text-red font-[Teko] transition-colors"
+        >{header.gameplay}</a
+      >
+    </li>
+    <li>
+      <div
+        class="btn-buy relative bg-red cursor-pointer transition-colors hover:bg-red/80"
+        style={`--pattern-url: url('/images/ui/site_pattern.png')`}
+      >
+        <a
+          href={`/${currentLocale}/#buy`}
+          class="font-[Teko] relative text-center px-4 w-full block sm:text-left"
+          >{header.buy}</a
+        >
+      </div>
+    </li>
+  </ul>
 </header>
 
 <style>
+  #hamburger > div {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nav-mobile {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    transition: right 1s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+  }
+
+  .p-blur {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .btn-buy::after {
     background-image: var(--pattern-url);
     background-position: center;
@@ -101,4 +203,43 @@ const header =
     transform: translate(-50%, -50%);
     opacity: 0.4;
   }
+
+  header.active {
+    & #hamburger > div:first-child {
+      transform: rotate(25deg) translateY(6px);
+    }
+    & #hamburger > div:nth-child(2) {
+      transform: rotate(-25deg) translateY(-3px);
+    }
+
+    & #hamburger .menu {
+      display: none;
+    }
+
+    & .p-blur {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    & .nav-mobile {
+      right: 0;
+    }
+  }
 </style>
+
+<script>
+  const btnHamburger = document.querySelector("#hamburger");
+
+  btnHamburger?.addEventListener("click", () => {
+    const header = document.querySelector("header");
+    const textBtnHamburger = document.querySelector("#hamburger .btn-text");
+    header?.classList.toggle("active");
+    if (textBtnHamburger) {
+      if (header?.classList.contains("active")) {
+        textBtnHamburger.textContent = "CLOSE";
+      } else {
+        textBtnHamburger.textContent = "MENU";
+      }
+    }
+  });
+</script>
