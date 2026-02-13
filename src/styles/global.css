@@ -73,3 +73,19 @@
   font-style: normal;
   font-display: swap;
 }
+
+@theme {
+  --color-red: #bb1020;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
