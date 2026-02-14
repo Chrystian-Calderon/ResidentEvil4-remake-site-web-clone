@@ -9,6 +9,7 @@ import steam from "../../assets/images/common/steam_b.svg";
 import separateWays from "../../assets/images/topics/bnr-separateways.jpg";
 import mercenaries from "../../assets/images/topics/bnr-mercenaries.jpg";
 import re4VRMode from "../../assets/images/topics/bnr-vrmode-re.jpg";
+import pageTTlRE from "../../assets/images/topics/page_ttl-re.png";
 ---
 
 <Layout>
@@ -153,55 +154,76 @@ import re4VRMode from "../../assets/images/topics/bnr-vrmode-re.jpg";
   </section>
 
   <!-- url section with images -->
-  <section class="flex gap-4 justify-end mr-10">
-    <div class="flex flex-col items-center gap-2">
-      <span
-        class="text-red font-[Teko]"
-        style="writing-mode: vertical-lr; letter-spacing: 0.1em;"
-        >BAJAR CONTENIDO</span
+  <section class="flex justify-end pr-10 mt-40">
+    <div class="flex gap-4 w-6xl">
+      <div class="flex flex-col items-center gap-2">
+        <span
+          class="text-red font-[Teko]"
+          style="writing-mode: vertical-lr; letter-spacing: 0.1em;"
+          >BAJAR CONTENIDO</span
+        >
+        <span
+          class="topics-arrow bg-red inline-block h-full max-h-[3.8vw] position relative w-px"
+        ></span>
+      </div>
+      <div
+        class="grid grid-cols-3 gap-2 flex-1"
+        style={`--pattern-url: url('/images/common/site_pattern.png')`}
       >
-      <span
-        class="topics-arrow bg-red inline-block h-full max-h-[3.8vw] position relative w-px"
-      ></span>
-    </div>
-    <div
-      class="flex gap-2"
-      style={`--pattern-url: url('/images/common/site_pattern.png')`}
-    >
-      <a href="#separateways">
-        <Image
-          src={separateWays}
-          alt="Separate Ways"
-          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
-        />
-        <div class="border-outside"></div>
-      </a>
-      <a href="#mercenaries">
-        <Image
-          src={mercenaries}
-          alt="Mercenaries"
-          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
-        />
-        <div class="border-outside"></div>
-      </a>
-      <a href="#vrmode">
-        <Image
-          src={re4VRMode}
-          alt="RE4 VR Mode"
-          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
-        />
-        <div class="border-outside"></div>
-      </a>
+        <a href="#separateways">
+          <Image
+            src={separateWays}
+            alt="Separate Ways"
+            class="w-full h-50 cursor-pointer hover:brightness-110 hover:drop-shadow-[0_0_10px_#bb1020] transition-all"
+          />
+          <div class="border-outside"></div>
+        </a>
+        <a href="#mercenaries">
+          <Image
+            src={mercenaries}
+            alt="Mercenaries"
+            class="w-full h-50 cursor-pointer hover:brightness-110 hover:drop-shadow-[0_0_10px_#bb1020] transition-all"
+          />
+          <div class="border-outside"></div>
+        </a>
+        <a href="#vrmode">
+          <Image
+            src={re4VRMode}
+            alt="RE4 VR Mode"
+            class="w-full h-50 cursor-pointer hover:brightness-110 hover:drop-shadow-[0_0_10px_#bb1020] transition-all"
+          />
+          <div class="border-outside"></div>
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- section chainsaw deemo -->
-  <section>
-    <Image
-      src={logoRE4}
-      alt="Resident Evil 4"
-      class="w-full h-auto mx-auto mt-20"
-    />
+  <section class="flex justify-end pr-10 mt-20">
+    <div class="w-6xl grid grid-rows-2 gap-2">
+      <div class="flex gap-4">
+        <Image
+          src={pageTTlRE}
+          alt="TTiRE"
+          class="w-50 h-auto cursor-pointer hover:brightness-110 transition-all"
+        />
+        <div class="flex flex-col gap-2">
+          <span class="text-red text-2xl font-bold">¡Demo ya disponible!</span>
+          <span class="text-white"
+            >No hay límites de tiempo, juega sin límite.</span
+          >
+        </div>
+      </div>
+      <div class="relative" style="height: fit-content;">
+        <span
+          class="h-0.5 w-[25vw] bg-red block absolute top-1/2 -left-90 -translate-y-1/2"
+        ></span>
+        <span class="text-red font-[Teko]">¡DEMO!</span>
+        <span
+          class="topics-arrow-h h-0.5 w-2/6 bg-red block absolute top-1/2 left-12 -translate-y-1/2"
+        ></span>
+      </div>
+    </div>
   </section>
 </Layout>
 
@@ -276,5 +298,17 @@ import re4VRMode from "../../assets/images/topics/bnr-vrmode-re.jpg";
     height: 1px;
     right: -10px;
     transform: rotate(135deg);
+  }
+
+  .topics-arrow-h:after {
+    background-color: #bb1020;
+    display: block;
+    content: "";
+    position: absolute;
+    width: 12px;
+    bottom: 5px;
+    height: 2px;
+    right: 0;
+    transform: rotate(45deg);
   }
 </style>
