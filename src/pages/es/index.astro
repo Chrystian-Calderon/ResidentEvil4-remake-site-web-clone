@@ -1,27 +1,30 @@
 ---
 import Image from "astro/components/Image.astro";
 import Layout from "../../layouts/Layout.astro";
-import loroRE4 from "../../assets/images/common/logo-re.svg";
+import logoRE4 from "../../assets/images/common/logo-re.svg";
 import ps5 from "../../assets/images/common/ps5_b.svg";
 import ps4 from "../../assets/images/common/ps4_b.svg";
 import xboxxs from "../../assets/images/common/xboxxs_b.svg";
 import steam from "../../assets/images/common/steam_b.svg";
+import separateWays from "../../assets/images/topics/bnr-separateways.jpg";
+import mercenaries from "../../assets/images/topics/bnr-mercenaries.jpg";
+import re4VRMode from "../../assets/images/topics/bnr-vrmode-re.jpg";
 ---
 
 <Layout>
+  <!-- background video -->
+  <div class="w-screen h-screen fixed top-0 left-0 -z-1 pointer-events-none">
+    <video muted autoplay class="w-full h-full object-cover">
+      <source
+        src="/video/Resident Evil 4 - Announcement Trailer.mp4"
+        type="video/mp4"
+      />
+      Su navegador no soporta el elemento de video.
+    </video>
+  </div>
+
   <!-- hero -->
   <section id="top" class="relative w-screen h-screen">
-    <!-- background video -->
-    <div class="w-screen h-screen absolute top-0 left-0 -z-1">
-      <video muted autoplay class="w-full h-full object-cover">
-        <source
-          src="/video/Resident Evil 4 - Announcement Trailer.mp4"
-          type="video/mp4"
-        />
-        Su navegador no soporta el elemento de video.
-      </video>
-    </div>
-
     <div
       class="text-white absolute top-1/6 right-0 -translate-y-1/6 w-50 text-center font-[Teko] bg-black/70"
       style={`--pattern-url: url('/images/common/site_pattern.png')`}
@@ -42,7 +45,7 @@ import steam from "../../assets/images/common/steam_b.svg";
     >
       <h1>
         <Image
-          src={loroRE4}
+          src={logoRE4}
           alt="Resident Evil 4"
           class="w-full h-auto mx-auto mt-20"
         />
@@ -148,6 +151,58 @@ import steam from "../../assets/images/common/steam_b.svg";
       </div>
     </div>
   </section>
+
+  <!-- url section with images -->
+  <section class="flex gap-4 justify-end mr-10">
+    <div class="flex flex-col items-center gap-2">
+      <span
+        class="text-red font-[Teko]"
+        style="writing-mode: vertical-lr; letter-spacing: 0.1em;"
+        >BAJAR CONTENIDO</span
+      >
+      <span
+        class="topics-arrow bg-red inline-block h-full max-h-[3.8vw] position relative w-px"
+      ></span>
+    </div>
+    <div
+      class="flex gap-2"
+      style={`--pattern-url: url('/images/common/site_pattern.png')`}
+    >
+      <a href="#separateways">
+        <Image
+          src={separateWays}
+          alt="Separate Ways"
+          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
+        />
+        <div class="border-outside"></div>
+      </a>
+      <a href="#mercenaries">
+        <Image
+          src={mercenaries}
+          alt="Mercenaries"
+          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
+        />
+        <div class="border-outside"></div>
+      </a>
+      <a href="#vrmode">
+        <Image
+          src={re4VRMode}
+          alt="RE4 VR Mode"
+          class="w-full h-50 cursor-pointer hover:opacity-80 transition-opacity"
+        />
+        <div class="border-outside"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- section chainsaw deemo -->
+  <section>
+    <Image
+      src={logoRE4}
+      alt="Resident Evil 4"
+      class="w-full h-auto mx-auto mt-20"
+    />
+  </section>
 </Layout>
 
 <style>
@@ -209,5 +264,17 @@ import steam from "../../assets/images/common/steam_b.svg";
     top: 0.06em;
     transform: scale(1, 1.2);
     filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
+  }
+
+  .topics-arrow:after {
+    background-color: #bb1020;
+    display: block;
+    content: "";
+    position: absolute;
+    width: 12px;
+    bottom: 3px;
+    height: 1px;
+    right: -10px;
+    transform: rotate(135deg);
   }
 </style>
