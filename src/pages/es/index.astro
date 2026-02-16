@@ -290,32 +290,34 @@ const themesCollection = [
     </div>
   </section>
 
-  <!-- section themes -->
-  <section class="flex flex-wrap justify-end items-center gap-2">
-    <div class="flex justify-between w-full">
+  <!-- section topics -->
+  <section class="flex flex-wrap justify-end items-center gap-2 pr-10">
+    <div class="flex justify-between w-6xl">
       <h3 class="text-red font-[Teko] text-3xl">TEMAS</h3>
       <ScrollControls carouselSelector=".carousel" />
     </div>
-    <div class="carousel w-6xl">
-      {
-        themesCollection.map((theme) => (
-          <div class="carousel-card">
-            <Image
-              src={theme.image}
-              alt="Theme Image"
-              class="w-full h-auto cursor-pointer hover:brightness-110 transition-all pointer-events-none"
-            />
-            <div class="h-full flex flex-col justify-between font-[Teko] p-2">
-              <p class="carousel-desc">{theme.desc}</p>
-              <p class="carousel-date">
-                <span>{theme.date[0]}</span>
-                <small class="text-red">{theme.date[1]}</small>
-              </p>
+    <div class="carousel w-full overflow-hidden flex justify-end">
+      <div class="w-6xl">
+        {
+          themesCollection.map((theme) => (
+            <div class="carousel-card">
+              <Image
+                src={theme.image}
+                alt="Theme Image"
+                class="w-full h-auto cursor-pointer hover:brightness-110 transition-all pointer-events-none"
+              />
+              <div class="h-full flex flex-col justify-between font-[Teko] p-2">
+                <p class="carousel-desc">{theme.desc}</p>
+                <p class="carousel-date">
+                  <span>{theme.date[0]}</span>
+                  <small class="text-red">{theme.date[1]}</small>
+                </p>
+              </div>
+              <div class="border-outside" />
             </div>
-            <div class="border-outside" />
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </section>
 </Layout>
@@ -407,8 +409,6 @@ const themesCollection = [
 
   .carousel {
     position: relative;
-    width: 100%;
-    overflow-x: hidden;
     white-space: nowrap;
     transition: all 0.2s;
     will-change: transform;
