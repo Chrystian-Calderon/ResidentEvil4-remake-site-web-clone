@@ -1,0 +1,191 @@
+---
+// Props: carouselSelector (string, required)
+const { carouselSelector = ".carousel" } = Astro.props;
+---
+
+<div class="flex gap-2 items-center">
+  <div
+    class="scroll-h w-50 bg-[#4b080f] relative brightness-70"
+    style="position: relative;"
+  >
+    <div
+      class="thumb bg-red absolute top-0 left-0 h-full brightness-150"
+      id="thumb"
+      style="position: absolute; top: 0; left: 0; height: 100%; width: 30px;"
+    >
+    </div>
+  </div>
+  <div class="flex gap-2 font-[Teko]">
+    <button class="carousel-arrow left-arrow" aria-label="Scroll left"
+      >&lt;</button
+    >
+    <button class="carousel-arrow right-arrow" aria-label="Scroll right"
+      >&gt;</button
+    >
+  </div>
+</div>
+
+<style>
+  .carousel-arrow {
+    background: #5d0b13;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    z-index: 2;
+    cursor: default;
+  }
+  .carousel-arrow.active {
+    background: #bb1020;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .scroll-h {
+    position: relative;
+    height: 0.5rem;
+    background: #bb1020cc;
+    overflow: hidden;
+  }
+  .thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 30px;
+    background: #bb1020;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+</style>
+
+<script is:inline define:vars={{ carouselSelector }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.querySelector(carouselSelector);
+    const leftArrow = document.querySelector(".left-arrow");
+    const rightArrow = document.querySelector(".right-arrow");
+    const thumb = document.getElementById("thumb");
+    const scrollTrack = document.querySelector(".scroll-h");
+    if (!carousel || !thumb || !scrollTrack) return;
+
+    // moving scroll of carousel
+    const updateThumb = () => {
+      const contentWidth = carousel.scrollWidth;
+      const visibleWidth = carousel.clientWidth;
+      const trackWidth = scrollTrack.clientWidth;
+
+      // Thumb width proportional to visible area
+      let thumbWidthPx = (visibleWidth / contentWidth) * trackWidth;
+      thumbWidthPx = Math.max(thumbWidthPx, 30);
+      thumbWidthPx = Math.min(thumbWidthPx, trackWidth); // no más grande que el track
+      thumb.style.width = `${thumbWidthPx}px`;
+
+      // Thumb position proporcional al scroll
+      const maxScroll = contentWidth - visibleWidth;
+      const maxThumbMove = trackWidth - thumbWidthPx;
+      const scrollRatio = maxScroll > 0 ? carousel.scrollLeft / maxScroll : 0;
+      const thumbLeft = scrollRatio * maxThumbMove;
+      thumb.style.left = `${thumbLeft}px`;
+    };
+
+    carousel.addEventListener("scroll", updateThumb);
+    window.addEventListener("resize", updateThumb);
+    updateThumb();
+
+    // Scroll by one card width
+    const scrollAmount = 320; // px (card width + margin)
+
+    function updateArrowState() {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      // left arrow
+      if (carousel.scrollLeft > 0) {
+        leftArrow.classList.add("active");
+        leftArrow.disabled = false;
+      } else {
+        leftArrow.classList.remove("active");
+        leftArrow.disabled = true;
+      }
+      // right arrow
+      if (carousel.scrollLeft < maxScroll - 1) {
+        rightArrow.classList.add("active");
+        rightArrow.disabled = false;
+      } else {
+        rightArrow.classList.remove("active");
+        rightArrow.disabled = true;
+      }
+    }
+
+    leftArrow.addEventListener("click", function () {
+      if (leftArrow.disabled) return;
+      carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+    rightArrow.addEventListener("click", function () {
+      if (rightArrow.disabled) return;
+      carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+
+    carousel.addEventListener("scroll", updateArrowState);
+    window.addEventListener("resize", updateArrowState);
+    updateArrowState();
+
+    // Drag-to-scroll for thumb (custom scrollbar) - smooth
+    let isThumbDown = false;
+    let thumbStartX = 0;
+    let thumbStartLeft = 0;
+    let lastThumbMoveEvent = null;
+    let thumbAnimationFrame = null;
+
+    thumb.addEventListener("mousedown", function (e) {
+      isThumbDown = true;
+      thumbStartX = e.pageX;
+      thumbStartLeft = parseFloat(window.getComputedStyle(thumb).left) || 0;
+      document.body.classList.add("dragging-thumb");
+      e.preventDefault();
+    });
+
+    function handleThumbMove(e) {
+      lastThumbMoveEvent = e;
+      if (!thumbAnimationFrame) {
+        thumbAnimationFrame = requestAnimationFrame(processThumbMove);
+      }
+    }
+
+    function processThumbMove() {
+      if (!isThumbDown || !lastThumbMoveEvent) {
+        thumbAnimationFrame = null;
+        return;
+      }
+      const e = lastThumbMoveEvent;
+      const contentWidth = carousel.scrollWidth;
+      const visibleWidth = carousel.clientWidth;
+      const trackWidth = scrollTrack.clientWidth;
+      let thumbWidthPx = (visibleWidth / contentWidth) * trackWidth;
+      thumbWidthPx = Math.max(thumbWidthPx, 30);
+      const maxThumbMove = trackWidth - thumbWidthPx;
+      let newLeft = thumbStartLeft + (e.pageX - thumbStartX);
+      newLeft = Math.max(0, Math.min(newLeft, maxThumbMove));
+      thumb.style.left = `${newLeft}px`;
+      // Sync carousel scroll
+      const maxScroll = contentWidth - visibleWidth;
+      const scrollRatio = newLeft / maxThumbMove;
+      carousel.scrollLeft = scrollRatio * maxScroll;
+      thumbAnimationFrame = null;
+    }
+
+    document.addEventListener("mousemove", handleThumbMove);
+
+    document.addEventListener("mouseup", function (e) {
+      if (isThumbDown && lastThumbMoveEvent) {
+        // Forzar un último ajuste para evitar salto visual
+        lastThumbMoveEvent = e;
+        processThumbMove();
+      }
+      isThumbDown = false;
+      document.body.classList.remove("dragging-thumb");
+      lastThumbMoveEvent = null;
+      thumbAnimationFrame = null;
+    });
+  });
+</script>
