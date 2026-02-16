@@ -1,6 +1,7 @@
 ---
 import Image from "astro/components/Image.astro";
 import Layout from "../../layouts/Layout.astro";
+import ScrollControls from "../../components/ScrollControls.astro";
 import logoRE4 from "../../assets/images/common/logo-re.svg";
 import ps5 from "../../assets/images/common/ps5_b.svg";
 import ps4 from "../../assets/images/common/ps4_b.svg";
@@ -10,6 +11,69 @@ import separateWays from "../../assets/images/topics/bnr-separateways.jpg";
 import mercenaries from "../../assets/images/topics/bnr-mercenaries.jpg";
 import re4VRMode from "../../assets/images/topics/bnr-vrmode-re.jpg";
 import pageTTlRE from "../../assets/images/topics/page_ttl-re.png";
+import reTrilogyBnr from "../../assets/images/topics/re-trilogy-bnr.jpg";
+import thumbGERE from "../../assets/images/topics/thumb-ge-re.jpg";
+import thumbVRModeRE from "../../assets/images/topics/thumb-vrmode-re.jpg";
+import thumbUpdateRE from "../../assets/images/topics/thumb-update-re.jpg";
+import thumb23091301RE from "../../assets/images/topics/thumb-230913-01-re.jpg";
+import thumb230817 from "../../assets/images/topics/thumb-230817.jpg";
+import thumb230324 from "../../assets/images/topics/thumb-230324.jpg";
+import thumb230310RE from "../../assets/images/topics/thumb-230310-re.jpg";
+import thumb221021GL from "../../assets/images/topics/thumb-221021-gl.jpg";
+import thumb22091501GL from "../../assets/images/topics/thumb-220915-01-gl.jpg";
+
+const themesCollection = [
+  {
+    image: reTrilogyBnr,
+    desc: "Este fantástico pack de ahorro incluye tres remakes de Resident Evil y contenido adicional.",
+    date: ["22/11", "2024"],
+  },
+  {
+    image: thumbGERE,
+    desc: "¡Resident Evil 4 Gold Edition ya está disponible e incluye el modo de historia adicional Caminos Separados y el pack de DLC extra!",
+    date: ["9/2", "2024"],
+  },
+  {
+    image: thumbVRModeRE,
+    desc: "¡El DLC del modo de RV ded Resident Evil 4 ya está disponible para PlayStation VR2!¿No tienes el juego principal? No pasa nada. ¡También hay una demo!",
+    date: ["8/12", "2024"],
+  },
+  {
+    image: thumbUpdateRE,
+    desc: "Resident Evil 4 Titel-Update",
+    date: ["8/12", "2023"],
+  },
+  {
+    image: thumb23091301RE,
+    desc: "¡Resident Evil 4 llegará a los dispositivos Apple en el invierno de 2023!",
+    date: ["13/9", "2023"],
+  },
+  {
+    image: thumb230817,
+    desc: "¡Capcom ha confirmado su presencia en el Tokyo Game Show 2023!",
+    date: ["17/08", "2023"],
+  },
+  {
+    image: thumb230324,
+    desc: '¡El modo de juego extra "Mercenarios" está disponible como contenido descargable gratuito!',
+    date: ["7/4", "2023"],
+  },
+  {
+    image: thumb230310RE,
+    desc: "Nuevos diseños para la ropa oficial de Capcom en Amazon",
+    date: ["10/3", "2023"],
+  },
+  {
+    image: thumb221021GL,
+    desc: "¡Ya puedes hacer tu reserva de Resident Evil 4! Echa un vistazo a la edición especial de coleccionista. ¡Está rebosante de cosas que harán las delicias de cualquier fan!",
+    date: ["21/10", "2022"],
+  },
+  {
+    image: thumb22091501GL,
+    desc: "¡El videeo archivado de Resident Evil Showcase transmitido el 21 de octubre ya está disponible!",
+    date: ["21/10", "2022"],
+  },
+];
 ---
 
 <Layout>
@@ -198,7 +262,7 @@ import pageTTlRE from "../../assets/images/topics/page_ttl-re.png";
     </div>
   </section>
 
-  <!-- section chainsaw deemo -->
+  <!-- section chainsaw demo -->
   <section class="flex justify-end pr-10 mt-20">
     <div class="w-6xl grid grid-rows-2 gap-2">
       <div class="flex gap-4">
@@ -223,6 +287,35 @@ import pageTTlRE from "../../assets/images/topics/page_ttl-re.png";
           class="topics-arrow-h h-0.5 w-2/6 bg-red block absolute top-1/2 left-12 -translate-y-1/2"
         ></span>
       </div>
+    </div>
+  </section>
+
+  <!-- section themes -->
+  <section class="flex flex-wrap justify-end items-center gap-2">
+    <div class="flex justify-between w-full">
+      <h3 class="text-red font-[Teko] text-3xl">TEMAS</h3>
+      <ScrollControls carouselSelector=".carousel" />
+    </div>
+    <div class="carousel w-6xl">
+      {
+        themesCollection.map((theme) => (
+          <div class="carousel-card">
+            <Image
+              src={theme.image}
+              alt="Theme Image"
+              class="w-full h-auto cursor-pointer hover:brightness-110 transition-all pointer-events-none"
+            />
+            <div class="h-full flex flex-col justify-between font-[Teko] p-2">
+              <p class="carousel-desc">{theme.desc}</p>
+              <p class="carousel-date">
+                <span>{theme.date[0]}</span>
+                <small class="text-red">{theme.date[1]}</small>
+              </p>
+            </div>
+            <div class="border-outside" />
+          </div>
+        ))
+      }
     </div>
   </section>
 </Layout>
@@ -311,4 +404,101 @@ import pageTTlRE from "../../assets/images/topics/page_ttl-re.png";
     right: 0;
     transform: rotate(45deg);
   }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: all 0.2s;
+    will-change: transform;
+    user-select: none;
+    cursor: pointer;
+    scroll-behavior: smooth;
+
+    & .carousel-card {
+      width: 300px;
+      height: 320px;
+      background: #181818;
+      box-shadow: 0 2px 12px #0008;
+      scroll-snap-align: start;
+      display: inline-flex;
+      flex-direction: column;
+      margin: 2em;
+      margin-left: 0;
+    }
+
+    & .carousel-desc {
+      color: #fff;
+      font-size: 1rem;
+      word-break: break-word;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    & .carousel-date {
+      display: flex;
+      color: #bb1020;
+      flex-wrap: wrap;
+      flex-grow: 0;
+      align-items: center;
+      font-size: min(4em, 30px);
+      line-height: 1.2;
+      position: relative;
+
+      & span {
+        position: relative;
+        top: 0.075em;
+      }
+
+      & small {
+        font-size: 0.5em;
+        margin-right: 0.2em;
+        writing-mode: vertical-lr;
+        line-height: 1;
+      }
+    }
+  }
+
+  .carousel.dragging {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.querySelector(".carousel");
+    if (!carousel) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    const stratDragging = (e) => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.classList.add("dragging");
+    };
+
+    const stopDragging = (e) => {
+      isDown = false;
+      carousel.classList.remove("dragging");
+    };
+
+    const move = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const scroll = x - startX;
+      carousel.scrollLeft = scrollLeft - scroll;
+    };
+
+    carousel.addEventListener("mousedown", stratDragging, false);
+    carousel.addEventListener("mousemove", move, false);
+    carousel.addEventListener("mouseup", stopDragging, false);
+    carousel.addEventListener("mouseleave", stopDragging, false);
+  });
+</script>
