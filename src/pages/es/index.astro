@@ -21,6 +21,19 @@ import thumb230324 from "../../assets/images/topics/thumb-230324.jpg";
 import thumb230310RE from "../../assets/images/topics/thumb-230310-re.jpg";
 import thumb221021GL from "../../assets/images/topics/thumb-221021-gl.jpg";
 import thumb22091501GL from "../../assets/images/topics/thumb-220915-01-gl.jpg";
+import trailerImg1 from "../../assets/images/trailer/1_re.jpg";
+import trailerImg2 from "../../assets/images/trailer/2_re.jpg";
+import trailerImg3 from "../../assets/images/trailer/3_re.jpg";
+import trailerImg4 from "../../assets/images/trailer/4_re.jpg";
+import trailerImg5 from "../../assets/images/trailer/5_re.jpg";
+import trailerImg6 from "../../assets/images/trailer/6_re.jpg";
+import trailerImg7 from "../../assets/images/trailer/7_re.jpg";
+import trailerImg8 from "../../assets/images/trailer/8_re.jpg";
+import trailerImg9 from "../../assets/images/trailer/9_gl.jpg";
+import trailerImg10 from "../../assets/images/trailer/10_re.jpg";
+import trailerImg11 from "../../assets/images/trailer/11_re.jpg";
+import trailerImg12 from "../../assets/images/trailer/12_gl.jpg";
+import trailerImg13 from "../../assets/images/trailer/thumb-220603-re.jpg";
 
 const themesCollection = [
   {
@@ -72,6 +85,74 @@ const themesCollection = [
     image: thumb22091501GL,
     desc: "¡El videeo archivado de Resident Evil Showcase transmitido el 21 de octubre ya está disponible!",
     date: ["21/10", "2022"],
+  },
+];
+
+const trailersCollection = [
+  {
+    href: "https://www.youtube.com/watch?v=75Q5_sGtKeo",
+    image: trailerImg1,
+    desc: "Resident Evil 4 Gold Edition - Launch Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=ffp4jqSgz5w",
+    image: trailerImg2,
+    desc: "Resident Evil 4 VR Mode - Launch Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=Zb3iOQdeR9c",
+    image: trailerImg3,
+    desc: "Resident Evil 4 - Soundtrack Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=_E2VJLLC1B8",
+    image: trailerImg4,
+    desc: "Resident Evil 4 Separate Ways - Launch Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=BxmsFwpYQz0",
+    image: trailerImg5,
+    desc: "Resident Evil 4 - DLC Reveal Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=RkyQUsreWMc",
+    image: trailerImg6,
+    desc: "Resident Evil 4 VR Mode - Teaser Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=TyzZ6kyEmP4",
+    image: trailerImg7,
+    desc: "Resident Evil 4 - The Mercenaries Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=7RPSBeRIP6Y",
+    image: trailerImg8,
+    desc: "Resident Evil 4 - Launch Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=zdStX4d_glk&start=2016",
+    image: trailerImg9,
+    desc: "Capcom Spotlight | 9.3.2023",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=b9OEQAW5m2k",
+    image: trailerImg10,
+    desc: "Resident Evil 4 - 3rd Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=xdtlv7CcfF0",
+    image: trailerImg11,
+    desc: "Resident Evil 4 - 2nd Trailer",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=VOL-uW4nyOg&start=3482",
+    image: trailerImg12,
+    desc: "Capcom Showcase 2022",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=qWgGIRjo_s8",
+    image: trailerImg13,
+    desc: "Tráiler de presentación",
   },
 ];
 ---
@@ -294,9 +375,9 @@ const themesCollection = [
   <section class="flex flex-wrap justify-end items-center gap-2 pr-10">
     <div class="flex justify-between w-6xl">
       <h3 class="text-red font-[Teko] text-3xl">TEMAS</h3>
-      <ScrollControls carouselSelector=".carousel" />
+      <ScrollControls carouselSelector="carousel" />
     </div>
-    <div class="carousel w-full overflow-hidden flex justify-end">
+    <div class="carousel w-full overflow-hidden flex justify-end" id="carousel">
       <div class="w-6xl">
         {
           themesCollection.map((theme) => (
@@ -316,6 +397,49 @@ const themesCollection = [
               <div class="border-outside" />
             </div>
           ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- section trailers -->
+  <section class="flex flex-wrap justify-end items-center gap-2 pr-10">
+    <div class="flex justify-between w-6xl">
+      <h3 class="text-red text-3xl font-[Teko]">TRÁILER</h3>
+      <ScrollControls carouselSelector="carousel-trailer" />
+    </div>
+    <div
+      class="carousel-trailer w-full flex justify-end overflow-hidden"
+      id="carousel-trailer"
+    >
+      <div class="w-6xl">
+        {
+          trailersCollection.map((trailer) => {
+            return (
+              <div class="carousel-card w-100 inline-block mr-10">
+                <a
+                  href={trailer.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="pointer-events-none relative w-full h-full block"
+                >
+                  <p
+                    class="tr-img"
+                    style="--youtube-link: url(/images/common/logo_youtube_hover.svg); --youtube-link-hover: url(/images/common/logo_yt_r.svg);"
+                  >
+                    <Image
+                      src={trailer.image}
+                      alt="Trailer Image"
+                      class="w-full h-auto cursor-pointer hover:brightness-110 transition-all pointer-events-none"
+                    />
+                  </p>
+                  <p class="text-white absolute bottom-0 w-full text-center font-[Teko]">
+                    {trailer.desc}
+                  </p>
+                </a>
+              </div>
+            );
+          })
         }
       </div>
     </div>
@@ -407,13 +531,13 @@ const themesCollection = [
     transform: rotate(45deg);
   }
 
-  .carousel {
+  .carousel,
+  .carousel-trailer {
     position: relative;
     white-space: nowrap;
     transition: all 0.2s;
     will-change: transform;
     user-select: none;
-    cursor: pointer;
     scroll-behavior: smooth;
 
     & .carousel-card {
@@ -426,6 +550,10 @@ const themesCollection = [
       flex-direction: column;
       margin: 2em;
       margin-left: 0;
+    }
+
+    & .carousel-card:hover {
+      cursor: pointer;
     }
 
     & .carousel-desc {
@@ -461,44 +589,146 @@ const themesCollection = [
     }
   }
 
-  .carousel.dragging {
+  .carousel-trailer {
+    & .carousel-card {
+      width: 400px;
+      height: auto;
+    }
+
+    & .carousel-card:hover {
+      cursor: pointer;
+    }
+
+    & p {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        black 70%,
+        black 100%
+      );
+    }
+
+    & .tr-img::after {
+      content: "";
+      background-image: var(--youtube-link);
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      width: 16%;
+      max-width: 100px;
+      height: 29%;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
+
+    & .carousel-card:hover .tr-img::after {
+      background-image: var(--youtube-link-hover);
+      opacity: 1;
+    }
+  }
+
+  .carousel.dragging,
+  .carousel-trailer.dragging,
+  .carousel.dragging .carousel-card,
+  .carousel-trailer.dragging .carousel-card {
     cursor: grabbing;
     cursor: -webkit-grabbing;
   }
 </style>
 
 <script is:inline>
+  class DragScroll {
+    constructor(carousel) {
+      this.carousel = carousel;
+      this.isDown = false;
+      this.startX = 0;
+      this.scrollLeft = 0;
+
+      this.carousel.addEventListener(
+        "mousedown",
+        this.startDragging.bind(this),
+      );
+      this.carousel.addEventListener("mousemove", this.move.bind(this));
+      this.carousel.addEventListener("mouseup", this.stopDragging.bind(this));
+      this.carousel.addEventListener(
+        "mouseleave",
+        this.stopDragging.bind(this),
+      );
+    }
+
+    startDragging(e) {
+      this.isDown = true;
+      this.startX = e.pageX - this.carousel.offsetLeft;
+      this.scrollLeft = this.carousel.scrollLeft;
+      this.carousel.classList.add("dragging");
+    }
+
+    stopDragging() {
+      this.isDown = false;
+      this.carousel.classList.remove("dragging");
+    }
+
+    move(e) {
+      if (!this.isDown) return;
+      e.preventDefault();
+      const x = e.pageX - this.carousel.offsetLeft;
+      const scroll = x - this.startX;
+      this.carousel.scrollLeft = this.scrollLeft - scroll;
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector(".carousel");
-    if (!carousel) return;
+    const carouselTrailer = document.querySelector(".carousel-trailer");
+    if (!carousel || !carouselTrailer) return;
 
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    const dragScroll1 = new DragScroll(carousel);
+    const dragScroll2 = new DragScroll(carouselTrailer);
 
-    const stratDragging = (e) => {
-      isDown = true;
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
-      carousel.classList.add("dragging");
-    };
+    carousel.addEventListener(
+      "mousedown",
+      dragScroll1.startDragging.bind(dragScroll1),
+      false,
+    );
+    carousel.addEventListener(
+      "mousemove",
+      dragScroll1.move.bind(dragScroll1),
+      false,
+    );
+    carousel.addEventListener(
+      "mouseup",
+      dragScroll1.stopDragging.bind(dragScroll1),
+      false,
+    );
+    carousel.addEventListener(
+      "mouseleave",
+      dragScroll1.stopDragging.bind(dragScroll1),
+      false,
+    );
 
-    const stopDragging = (e) => {
-      isDown = false;
-      carousel.classList.remove("dragging");
-    };
-
-    const move = (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      const scroll = x - startX;
-      carousel.scrollLeft = scrollLeft - scroll;
-    };
-
-    carousel.addEventListener("mousedown", stratDragging, false);
-    carousel.addEventListener("mousemove", move, false);
-    carousel.addEventListener("mouseup", stopDragging, false);
-    carousel.addEventListener("mouseleave", stopDragging, false);
+    carouselTrailer.addEventListener(
+      "mousedown",
+      dragScroll2.startDragging.bind(dragScroll2),
+      false,
+    );
+    carouselTrailer.addEventListener(
+      "mousemove",
+      dragScroll2.move.bind(dragScroll2),
+      false,
+    );
+    carouselTrailer.addEventListener(
+      "mouseup",
+      dragScroll2.stopDragging.bind(dragScroll2),
+      false,
+    );
+    carouselTrailer.addEventListener(
+      "mouseleave",
+      dragScroll2.stopDragging.bind(dragScroll2),
+      false,
+    );
   });
 </script>
