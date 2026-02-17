@@ -1,9 +1,9 @@
 ---
-// Props: carouselSelector (string, required)
-const { carouselSelector = ".carousel" } = Astro.props;
+const { carouselSelector } = Astro.props;
+const compId = `scroll-${crypto.randomUUID()}`;
 ---
 
-<div class="flex gap-2 items-center">
+<div class="flex gap-2 items-center" id={compId}>
   <div
     class="scroll-h w-50 bg-[#4b080f] relative brightness-70"
     style="position: relative;"
@@ -61,14 +61,15 @@ const { carouselSelector = ".carousel" } = Astro.props;
   }
 </style>
 
-<script is:inline define:vars={{ carouselSelector }}>
+<script is:inline define:vars={{ carouselSelector, compId }}>
   document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(carouselSelector);
-    const leftArrow = document.querySelector(".left-arrow");
-    const rightArrow = document.querySelector(".right-arrow");
-    const thumb = document.getElementById("thumb");
-    const scrollTrack = document.querySelector(".scroll-h");
-    if (!carousel || !thumb || !scrollTrack) return;
+    const root = document.getElementById(compId);
+    const carousel = document.getElementById(carouselSelector);
+    const leftArrow = root.querySelector(".left-arrow");
+    const rightArrow = root.querySelector(".right-arrow");
+    const thumb = root.querySelector("#thumb");
+    const scrollTrack = root.querySelector(".scroll-h");
+    if (!carousel || !thumb || !scrollTrack || !leftArrow || !rightArrow) return;
 
     // moving scroll of carousel
     const updateThumb = () => {
@@ -95,7 +96,7 @@ const { carouselSelector = ".carousel" } = Astro.props;
     updateThumb();
 
     // Scroll by one card width
-    const scrollAmount = 320; // px (card width + margin)
+    const scrollAmount = 320;
 
     function updateArrowState() {
       const maxScroll = carousel.scrollWidth - carousel.clientWidth;
