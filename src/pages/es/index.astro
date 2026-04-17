@@ -34,6 +34,11 @@ import trailerImg10 from "../../assets/images/trailer/10_re.jpg";
 import trailerImg11 from "../../assets/images/trailer/11_re.jpg";
 import trailerImg12 from "../../assets/images/trailer/12_gl.jpg";
 import trailerImg13 from "../../assets/images/trailer/thumb-220603-re.jpg";
+import bgInformation from "../../assets/images/about_bg-about.jpg";
+import bgStory from "../../assets/images/about_bg-story.png";
+import aboutImg01 from "../../assets/images/about_img01.jpg";
+import aboutImg02 from "../../assets/images/about_img02.jpg";
+import aboutImg03 from "../../assets/images/about_img03.jpg";
 
 const themesCollection = [
   {
@@ -159,12 +164,12 @@ const trailersCollection = [
 
 <Layout>
   <!-- background video -->
-  <div class="w-screen h-screen fixed top-0 left-0 -z-1 pointer-events-none">
-    <video muted autoplay class="w-full h-full object-cover">
-      <source
-        src="/video/Resident Evil 4 - Announcement Trailer.mp4"
-        type="video/mp4"
-      />
+  <div
+    id="bg-video"
+    class="w-screen h-screen fixed top-0 left-0 -z-1 pointer-events-none transition-opacity duration-500"
+  >
+    <video muted autoplay loop class="w-full h-full object-cover">
+      <source src="/video/bg.mp4" type="video/mp4" />
       Su navegador no soporta el elemento de video.
     </video>
   </div>
@@ -444,9 +449,94 @@ const trailersCollection = [
       </div>
     </div>
   </section>
+
+  <!-- section more information -->
+  <section id="info" class="w-7xl mx-auto">
+    <div class="relative">
+      <div class="relative z-1 text-white w-2xl top-40 left-30">
+        <h3
+          class="bg-red text-4xl font-[Teko] bg-custom"
+          style={`--pattern-url: url('/images/common/site_pattern.png')`}
+        >
+          MÁS INFORMACIÓN
+        </h3><br />
+        <p
+          class="bg-white text-6xl w-md bg-custom mb-10"
+          style={`--pattern-url: url('/images/common/site_pattern.png')`}
+        >
+          Sobrevivir es solo el principio
+        </p><br />
+        <p class="font-bold text-sm leading-8">
+          Resident Evil 4 es un remake del Resident Evil 4 original del 2005.<br
+          /><br />Survival Horror de última generación reimaginado para el año
+          2023.<br /><br />Resident Evil 4 conserva la esencia del juego
+          original, a la vez que introduce mecánicas de juego actualizadas, una
+          historia reimaginada, e impresionantes gráficos de última generación
+          que lo convierten en la experiencia de Survival Horror definitiva en
+          la cual se cruzan la vida y la muerte, el terror y la catarsis.
+        </p>
+      </div>
+      <div class="absolute left-0 top-0 z-0">
+        <Image
+          src={bgInformation}
+          alt="Background Information"
+          class="w-full h-auto mt-4"
+        />
+      </div>
+      <div class="flex justify-between gap-4 absolute -bottom-120 left-0">
+        <Image
+          src={aboutImg01}
+          alt="About Image 1"
+          class="flex-1 w-full h-auto"
+        />
+        <Image
+          src={aboutImg02}
+          alt="About Image 2"
+          class="flex-1 w-full h-auto"
+        />
+        <Image
+          src={aboutImg03}
+          alt="About Image 3"
+          class="flex-1 w-full h-auto"
+        />
+      </div>
+    </div>
+    <div class="relative mt-100">
+      <div class="relative z-1 text-white w-2xl top-40 left-30">
+        <h3
+          class="bg-red text-4xl font-[Teko] bg-custom"
+          style={`--pattern-url: url('/images/common/site_pattern.png')`}
+        >
+          HISTORIA
+        </h3>
+        <p class="mt-10">
+          Han pasado seis años desde la catástrofe biológica de Raccoon City.<br
+          /><br />Leon S. Kennedy, uno de los supervivientes, ha sido asignado
+          como agente especial del gobierno al presidente de los Estados Unidos.<br
+          /><br />Con la experiencia de múltiples misiones a sus espaldas,<br
+          />Leon es enviado a rescatar a la hija del presidente, la cual ha sido
+          secuestrada.<br /><br />Sus pesquisas le llevan a un aislado pueblo
+          europeo,<br />en donde algo muy extraño está pasando con sus
+          habitantes...<br /><br />El telón se alza desvelando una cruenta
+          experiencia de Survival Horror y la historia de un angustioso rescate.
+        </p>
+      </div>
+      <div class="absolute left-0 top-0 z-0">
+        <Image
+          src={bgStory}
+          alt="Background Story"
+          class="w-full h-auto mt-4"
+        />
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
+  .hide-video {
+    opacity: 0;
+    pointer-events: none;
+  }
   .border-outside {
     height: 2px;
     width: 100%;
@@ -638,6 +728,20 @@ const trailersCollection = [
     cursor: grabbing;
     cursor: -webkit-grabbing;
   }
+
+  .bg-custom {
+    background-image: var(--pattern-url);
+    background-position: left top;
+    background-size: 1000px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(187, 16, 32, 0);
+    display: inline-block;
+    position: relative;
+    top: 0.06em;
+    transform: scale(1, 1.2);
+    filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
+  }
 </style>
 
 <script is:inline>
@@ -684,6 +788,8 @@ const trailersCollection = [
   document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector(".carousel");
     const carouselTrailer = document.querySelector(".carousel-trailer");
+    const video = document.getElementById("bg-video");
+    const info = document.getElementById("info");
     if (!carousel || !carouselTrailer) return;
 
     const dragScroll1 = new DragScroll(carousel);
@@ -730,5 +836,21 @@ const trailersCollection = [
       dragScroll2.stopDragging.bind(dragScroll2),
       false,
     );
+
+    // intersection observer to hide video when info section is in viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.classList.add("hide-video");
+          } else {
+            video.classList.remove("hide-video");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(info);
   });
 </script>
