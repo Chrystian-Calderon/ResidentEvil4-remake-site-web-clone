@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import Layout from "../../layouts/Layout.astro";
 import ScrollControls from "../../components/ScrollControls.astro";
+import CardImgCharacter from "../../components/CardImgCharacter.astro";
 import logoRE4 from "../../assets/images/common/logo-re.svg";
 import ps5 from "../../assets/images/common/ps5_b.svg";
 import ps4 from "../../assets/images/common/ps4_b.svg";
@@ -39,6 +40,39 @@ import bgStory from "../../assets/images/about_bg-story.png";
 import aboutImg01 from "../../assets/images/about_img01.jpg";
 import aboutImg02 from "../../assets/images/about_img02.jpg";
 import aboutImg03 from "../../assets/images/about_img03.jpg";
+import imgCharacterLeon from "../../assets/images/protagonista/character_thumb-leon.jpg";
+import imgBgCharacterLeon1 from "../../assets/images/character/character_img-leon-01.jpg";
+import imgBgCharacterLeon2 from "../../assets/images/character/character_img-leon-02.jpg";
+import imgCharacterAshley from "../../assets/images/protagonista/character_thumb-ashley.jpg";
+import imgBgCharacterAshley1 from "../../assets/images/character/character_img-ashley-01.jpg";
+import imgBgCharacterAshley2 from "../../assets/images/character/character_img-ashley-02.jpg";
+import imgCharacterLuis from "../../assets/images/protagonista/character_thumb-luis.jpg";
+import imgBgCharacterLuis1 from "../../assets/images/character/character_img-luis-01.jpg";
+import imgBgCharacterLuis2 from "../../assets/images/character/character_img-luis-02.jpg";
+import imgCharacterAda from "../../assets/images/protagonista/character_thumb-ada.jpg";
+import imgBgCharacterAda from "../../assets/images/character/character_img-ada.jpg";
+import imgCharacterGanad from "../../assets/images/protagonista/character_thumb-ganad.jpg";
+import imgBgCharacterGanad1 from "../../assets/images/character/character_img-ganad-01.jpg";
+import imgBgCharacterGanad2 from "../../assets/images/character/character_img-ganad-02.jpg";
+import imgCharacterChainsaw from "../../assets/images/protagonista/character_thumb-chainsaw.jpg";
+import imgBgCharacterChainsaw from "../../assets/images/character/character_img-chainsaw.jpg";
+import imgCharacterBitores from "../../assets/images/protagonista/character_thumb-bitores.jpg";
+import imgBgCharacterBitores from "../../assets/images/character/character_img-bitores.jpg";
+import imgCharacterSalazar from "../../assets/images/protagonista/character_thumb-salazar.jpg";
+import imgBgCharacterSalazar1 from "../../assets/images/character/character_img-salazar-01.jpg";
+import imgBgCharacterSalazar2 from "../../assets/images/character/character_img-salazar-02.jpg";
+import imgCharacterHannigan from "../../assets/images/protagonista/character_thumb-hannigan.jpg";
+import imgBgCharacterHannigan from "../../assets/images/character/character_img-hannigan.jpg";
+import imgCharacterMerchant from "../../assets/images/protagonista/character_thumb-merchant.jpg";
+import imgBgCharacterMerchant from "../../assets/images/character/character_img-merchant.jpg";
+import imgCharacterKrauser from "../../assets/images/protagonista/character_thumb-krauser.jpg";
+import imgBgCharacterKrauser1 from "../../assets/images/character/character_img-krauser-01.jpg";
+import imgBgCharacterKrauser2 from "../../assets/images/character/character_img-krauser-02.jpg";
+import imgCharacterSaddler from "../../assets/images/protagonista/character_thumb-saddler.jpg";
+import imgBgCharacterSaddler1 from "../../assets/images/character/character_img-saddler-01.jpg";
+import imgBgCharacterSaddler2 from "../../assets/images/character/character_img-saddler-02.jpg";
+import imgCharacterEzalot from "../../assets/images/protagonista/character_thumb-ezalot.jpg";
+import imgBgCharacterEzalot from "../../assets/images/character/character_img-ezalot.jpg";
 
 const themesCollection = [
   {
@@ -160,6 +194,8 @@ const trailersCollection = [
     desc: "Tráiler de presentación",
   },
 ];
+
+const charactersCollection = [];
 ---
 
 <Layout>
@@ -501,8 +537,8 @@ const trailersCollection = [
         />
       </div>
     </div>
-    <div class="relative mt-100">
-      <div class="relative z-1 text-white w-2xl top-40 left-30">
+    <div class="relative mt-100 pt-40 pb-20">
+      <div class="relative z-1 text-white w-2xl ml-30">
         <h3
           class="bg-red text-4xl font-[Teko] bg-custom"
           style={`--pattern-url: url('/images/common/site_pattern.png')`}
@@ -521,336 +557,512 @@ const trailersCollection = [
           experiencia de Survival Horror y la historia de un angustioso rescate.
         </p>
       </div>
-      <div class="absolute left-0 top-0 z-0">
+      <div class="absolute inset-0 z-0 pointer-events-none">
         <Image
           src={bgStory}
           alt="Background Story"
-          class="w-full h-auto mt-4"
+          class="w-full h-full object-cover"
         />
       </div>
     </div>
   </section>
-</Layout>
 
-<style>
-  .hide-video {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .border-outside {
-    height: 2px;
-    width: 100%;
-    position: relative;
-  }
+  <!-- section characters -->
+  <section class="w-7xl mx-auto">
+    <div class="flex justify-between items-center ml-30">
+      <h3
+        class="bg-red text-4xl font-[Teko] bg-custom"
+        style={`--pattern-url: url('/images/common/site_pattern.png')`}
+      >
+        Protagonista
+      </h3>
+      <div class="w-[67%]">
+        <div class="grid grid-cols-7 gap-0.5">
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterLeon}
+              alt="Leon S. Kennedy"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Leon S. Kennedy
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterAshley}
+              alt="Ashley Graham"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Ashley Graham
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterLuis}
+              alt="Luis Sera"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Luis Sera
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image src={imgCharacterAda} alt="Ada Wong" class="w-full h-auto" />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Ada Wong
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterGanad}
+              alt="Ganados"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Ganados
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterChainsaw}
+              alt="Chainsaw Ganado"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Chainsaw Ganado
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterBitores}
+              alt="Bitores Mendez"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Bitores Mendez
+            </figcaption>
+          </figure>
+          <div></div>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterSalazar}
+              alt="Ramon Salazar"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Ramon Salazar
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterHannigan}
+              alt="Sherry Birkin"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Sherry Birkin
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterMerchant}
+              alt="Merchant"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Merchant
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterKrauser}
+              alt="Jack Krauser"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Jack Krauser
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterSaddler}
+              alt="Osmund Saddler"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Osmund Saddler
+            </figcaption>
+          </figure>
+          <figure class="relative overflow-hidden">
+            <Image
+              src={imgCharacterEzalot}
+              alt="Ezalot"
+              class="w-full h-auto"
+            />
+            <figcaption
+              class="absolute right-0 bottom-0 px-2 py-0.3 text-xs text-white font-[Teko] tracking-wide"
+            >
+              Ezalot
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="mt-15 relative">
+      <CardImgCharacter
+        images={[imgBgCharacterLeon1, imgBgCharacterLeon2]}
+        title="Leon S. Kennedy"
+        description="Leon S. Kennedy ha pasado de ser un policía novato cuando tuvo lugar el incidente de Raccoon City hace seis años a convertirse en un agente a las órdenes directas del presidente de EE.UU."
+      />
+    </div>
+  </section>
 
-  .border-inside {
-    height: 1px;
-    width: 100%;
-    position: relative;
-  }
-
-  .border-outside:before,
-  .border-inside:before {
-    background-color: #bb1020;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    bottom: 100%;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .border-outside:after,
-  .border-inside:after {
-    background-image: var(--pattern-url);
-    content: "";
-    background-position: center;
-    background-repeat: repeat;
-    background-size: 1000px;
-    opacity: 0.8;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 50%;
-    bottom: 100%;
-    top: 0;
-    transform: translateX(-50%);
-  }
-
-  .border-inside:after {
-    background-position: center right;
-  }
-
-  .info-sub {
-    background-image: var(--pattern-url);
-    background-position: left top;
-    background-size: 1000px;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: rgba(187, 16, 32, 0);
-    display: inline-block;
-    position: relative;
-    top: 0.06em;
-    transform: scale(1, 1.2);
-    filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
-  }
-
-  .topics-arrow:after {
-    background-color: #bb1020;
-    display: block;
-    content: "";
-    position: absolute;
-    width: 12px;
-    bottom: 3px;
-    height: 1px;
-    right: -10px;
-    transform: rotate(135deg);
-  }
-
-  .topics-arrow-h:after {
-    background-color: #bb1020;
-    display: block;
-    content: "";
-    position: absolute;
-    width: 12px;
-    bottom: 5px;
-    height: 2px;
-    right: 0;
-    transform: rotate(45deg);
-  }
-
-  .carousel,
-  .carousel-trailer {
-    position: relative;
-    white-space: nowrap;
-    transition: all 0.2s;
-    will-change: transform;
-    user-select: none;
-    scroll-behavior: smooth;
-
-    & .carousel-card {
-      width: 300px;
-      height: 320px;
-      background: #181818;
-      box-shadow: 0 2px 12px #0008;
-      scroll-snap-align: start;
-      display: inline-flex;
-      flex-direction: column;
-      margin: 2em;
-      margin-left: 0;
+  <style>
+    .hide-video {
+      opacity: 0;
+      pointer-events: none;
     }
-
-    & .carousel-card:hover {
-      cursor: pointer;
-    }
-
-    & .carousel-desc {
-      color: #fff;
-      font-size: 1rem;
-      word-break: break-word;
-      white-space: normal;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-
-    & .carousel-date {
-      display: flex;
-      color: #bb1020;
-      flex-wrap: wrap;
-      flex-grow: 0;
-      align-items: center;
-      font-size: min(4em, 30px);
-      line-height: 1.2;
+    .border-outside {
+      height: 2px;
+      width: 100%;
       position: relative;
-
-      & span {
-        position: relative;
-        top: 0.075em;
-      }
-
-      & small {
-        font-size: 0.5em;
-        margin-right: 0.2em;
-        writing-mode: vertical-lr;
-        line-height: 1;
-      }
-    }
-  }
-
-  .carousel-trailer {
-    & .carousel-card {
-      width: 400px;
-      height: auto;
     }
 
-    & .carousel-card:hover {
-      cursor: pointer;
+    .border-inside {
+      height: 1px;
+      width: 100%;
+      position: relative;
     }
 
-    & p {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        black 70%,
-        black 100%
-      );
-    }
-
-    & .tr-img::after {
+    .border-outside:before,
+    .border-inside:before {
+      background-color: #bb1020;
       content: "";
-      background-image: var(--youtube-link);
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      width: 16%;
-      max-width: 100px;
-      height: 29%;
-      display: block;
       position: absolute;
-      top: 50%;
+      width: 100%;
+      height: 100%;
+      bottom: 100%;
+      top: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
+      transform: translateX(-50%);
     }
 
-    & .carousel-card:hover .tr-img::after {
-      background-image: var(--youtube-link-hover);
-      opacity: 1;
+    .border-outside:after,
+    .border-inside:after {
+      background-image: var(--pattern-url);
+      content: "";
+      background-position: center;
+      background-repeat: repeat;
+      background-size: 1000px;
+      opacity: 0.8;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 50%;
+      bottom: 100%;
+      top: 0;
+      transform: translateX(-50%);
     }
-  }
 
-  .carousel.dragging,
-  .carousel-trailer.dragging,
-  .carousel.dragging .carousel-card,
-  .carousel-trailer.dragging .carousel-card {
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
-  }
+    .border-inside:after {
+      background-position: center right;
+    }
 
-  .bg-custom {
-    background-image: var(--pattern-url);
-    background-position: left top;
-    background-size: 1000px;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: rgba(187, 16, 32, 0);
-    display: inline-block;
-    position: relative;
-    top: 0.06em;
-    transform: scale(1, 1.2);
-    filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
-  }
-</style>
+    .info-sub {
+      background-image: var(--pattern-url);
+      background-position: left top;
+      background-size: 1000px;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: rgba(187, 16, 32, 0);
+      display: inline-block;
+      position: relative;
+      top: 0.06em;
+      transform: scale(1, 1.2);
+      filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
+    }
 
-<script is:inline>
-  class DragScroll {
-    constructor(carousel) {
-      this.carousel = carousel;
-      this.isDown = false;
-      this.startX = 0;
-      this.scrollLeft = 0;
+    .topics-arrow:after {
+      background-color: #bb1020;
+      display: block;
+      content: "";
+      position: absolute;
+      width: 12px;
+      bottom: 3px;
+      height: 1px;
+      right: -10px;
+      transform: rotate(135deg);
+    }
 
-      this.carousel.addEventListener(
+    .topics-arrow-h:after {
+      background-color: #bb1020;
+      display: block;
+      content: "";
+      position: absolute;
+      width: 12px;
+      bottom: 5px;
+      height: 2px;
+      right: 0;
+      transform: rotate(45deg);
+    }
+
+    .carousel,
+    .carousel-trailer {
+      position: relative;
+      white-space: nowrap;
+      transition: all 0.2s;
+      will-change: transform;
+      user-select: none;
+      scroll-behavior: smooth;
+
+      & .carousel-card {
+        width: 300px;
+        height: 320px;
+        background: #181818;
+        box-shadow: 0 2px 12px #0008;
+        scroll-snap-align: start;
+        display: inline-flex;
+        flex-direction: column;
+        margin: 2em;
+        margin-left: 0;
+      }
+
+      & .carousel-card:hover {
+        cursor: pointer;
+      }
+
+      & .carousel-desc {
+        color: #fff;
+        font-size: 1rem;
+        word-break: break-word;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+      }
+
+      & .carousel-date {
+        display: flex;
+        color: #bb1020;
+        flex-wrap: wrap;
+        flex-grow: 0;
+        align-items: center;
+        font-size: min(4em, 30px);
+        line-height: 1.2;
+        position: relative;
+
+        & span {
+          position: relative;
+          top: 0.075em;
+        }
+
+        & small {
+          font-size: 0.5em;
+          margin-right: 0.2em;
+          writing-mode: vertical-lr;
+          line-height: 1;
+        }
+      }
+    }
+
+    .carousel-trailer {
+      & .carousel-card {
+        width: 400px;
+        height: auto;
+      }
+
+      & .carousel-card:hover {
+        cursor: pointer;
+      }
+
+      & p {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          black 70%,
+          black 100%
+        );
+      }
+
+      & .tr-img::after {
+        content: "";
+        background-image: var(--youtube-link);
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.8;
+        width: 16%;
+        max-width: 100px;
+        height: 29%;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+      }
+
+      & .carousel-card:hover .tr-img::after {
+        background-image: var(--youtube-link-hover);
+        opacity: 1;
+      }
+    }
+
+    .carousel.dragging,
+    .carousel-trailer.dragging,
+    .carousel.dragging .carousel-card,
+    .carousel-trailer.dragging .carousel-card {
+      cursor: grabbing;
+      cursor: -webkit-grabbing;
+    }
+
+    .bg-custom {
+      background-image: var(--pattern-url);
+      background-position: left top;
+      background-size: 1000px;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: rgba(187, 16, 32, 0);
+      display: inline-block;
+      position: relative;
+      top: 0.06em;
+      transform: scale(1, 1.2);
+      filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.8));
+    }
+  </style>
+
+  <script is:inline>
+    class DragScroll {
+      constructor(carousel) {
+        this.carousel = carousel;
+        this.isDown = false;
+        this.startX = 0;
+        this.scrollLeft = 0;
+
+        this.carousel.addEventListener(
+          "mousedown",
+          this.startDragging.bind(this),
+        );
+        this.carousel.addEventListener("mousemove", this.move.bind(this));
+        this.carousel.addEventListener("mouseup", this.stopDragging.bind(this));
+        this.carousel.addEventListener(
+          "mouseleave",
+          this.stopDragging.bind(this),
+        );
+      }
+
+      startDragging(e) {
+        this.isDown = true;
+        this.startX = e.pageX - this.carousel.offsetLeft;
+        this.scrollLeft = this.carousel.scrollLeft;
+        this.carousel.classList.add("dragging");
+      }
+
+      stopDragging() {
+        this.isDown = false;
+        this.carousel.classList.remove("dragging");
+      }
+
+      move(e) {
+        if (!this.isDown) return;
+        e.preventDefault();
+        const x = e.pageX - this.carousel.offsetLeft;
+        const scroll = x - this.startX;
+        this.carousel.scrollLeft = this.scrollLeft - scroll;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const carousel = document.querySelector(".carousel");
+      const carouselTrailer = document.querySelector(".carousel-trailer");
+      const video = document.getElementById("bg-video");
+      const info = document.getElementById("info");
+      if (!carousel || !carouselTrailer) return;
+
+      const dragScroll1 = new DragScroll(carousel);
+      const dragScroll2 = new DragScroll(carouselTrailer);
+
+      carousel.addEventListener(
         "mousedown",
-        this.startDragging.bind(this),
+        dragScroll1.startDragging.bind(dragScroll1),
+        false,
       );
-      this.carousel.addEventListener("mousemove", this.move.bind(this));
-      this.carousel.addEventListener("mouseup", this.stopDragging.bind(this));
-      this.carousel.addEventListener(
+      carousel.addEventListener(
+        "mousemove",
+        dragScroll1.move.bind(dragScroll1),
+        false,
+      );
+      carousel.addEventListener(
+        "mouseup",
+        dragScroll1.stopDragging.bind(dragScroll1),
+        false,
+      );
+      carousel.addEventListener(
         "mouseleave",
-        this.stopDragging.bind(this),
+        dragScroll1.stopDragging.bind(dragScroll1),
+        false,
       );
-    }
 
-    startDragging(e) {
-      this.isDown = true;
-      this.startX = e.pageX - this.carousel.offsetLeft;
-      this.scrollLeft = this.carousel.scrollLeft;
-      this.carousel.classList.add("dragging");
-    }
+      carouselTrailer.addEventListener(
+        "mousedown",
+        dragScroll2.startDragging.bind(dragScroll2),
+        false,
+      );
+      carouselTrailer.addEventListener(
+        "mousemove",
+        dragScroll2.move.bind(dragScroll2),
+        false,
+      );
+      carouselTrailer.addEventListener(
+        "mouseup",
+        dragScroll2.stopDragging.bind(dragScroll2),
+        false,
+      );
+      carouselTrailer.addEventListener(
+        "mouseleave",
+        dragScroll2.stopDragging.bind(dragScroll2),
+        false,
+      );
 
-    stopDragging() {
-      this.isDown = false;
-      this.carousel.classList.remove("dragging");
-    }
+      // intersection observer to hide video when info section is in viewport
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.classList.add("hide-video");
+            } else {
+              video.classList.remove("hide-video");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
 
-    move(e) {
-      if (!this.isDown) return;
-      e.preventDefault();
-      const x = e.pageX - this.carousel.offsetLeft;
-      const scroll = x - this.startX;
-      this.carousel.scrollLeft = this.scrollLeft - scroll;
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(".carousel");
-    const carouselTrailer = document.querySelector(".carousel-trailer");
-    const video = document.getElementById("bg-video");
-    const info = document.getElementById("info");
-    if (!carousel || !carouselTrailer) return;
-
-    const dragScroll1 = new DragScroll(carousel);
-    const dragScroll2 = new DragScroll(carouselTrailer);
-
-    carousel.addEventListener(
-      "mousedown",
-      dragScroll1.startDragging.bind(dragScroll1),
-      false,
-    );
-    carousel.addEventListener(
-      "mousemove",
-      dragScroll1.move.bind(dragScroll1),
-      false,
-    );
-    carousel.addEventListener(
-      "mouseup",
-      dragScroll1.stopDragging.bind(dragScroll1),
-      false,
-    );
-    carousel.addEventListener(
-      "mouseleave",
-      dragScroll1.stopDragging.bind(dragScroll1),
-      false,
-    );
-
-    carouselTrailer.addEventListener(
-      "mousedown",
-      dragScroll2.startDragging.bind(dragScroll2),
-      false,
-    );
-    carouselTrailer.addEventListener(
-      "mousemove",
-      dragScroll2.move.bind(dragScroll2),
-      false,
-    );
-    carouselTrailer.addEventListener(
-      "mouseup",
-      dragScroll2.stopDragging.bind(dragScroll2),
-      false,
-    );
-    carouselTrailer.addEventListener(
-      "mouseleave",
-      dragScroll2.stopDragging.bind(dragScroll2),
-      false,
-    );
-
-    // intersection observer to hide video when info section is in viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.classList.add("hide-video");
-          } else {
-            video.classList.remove("hide-video");
-          }
-        });
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(info);
-  });
-</script>
+      observer.observe(info);
+    });
+  </script>
+</Layout>
